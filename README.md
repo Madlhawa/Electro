@@ -1,9 +1,10 @@
 # Electro
 IR-project
 
-<b>Git hub setup</b>
+<hr>
+<h3><b>Git hub setup</b></h3>
   
-  1 ls -al ~/.ssh
+  <h4>1 ls -al ~/.ssh</h4>
     if there is no files like id_dsa.pub
                               id_ecdsa.pub
                               id_ed25519.pub
@@ -23,3 +24,4 @@ IR-project
   6 cat ~/.ssh/id_rsa.pub
   
   copy the content and send to madhawa242@gmail.com 
+<hr>
