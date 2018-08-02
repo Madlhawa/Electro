@@ -1,7 +1,8 @@
 # Electro
 IR-project
 
-#Git hub setup
+<b>Git hub setup</b>
+  
   1 ls -al ~/.ssh
     if there is no files like id_dsa.pub
                               id_ecdsa.pub
