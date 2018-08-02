@@ -8,20 +8,20 @@ IR-project
     if there is no files like id_dsa.pub
                               id_ecdsa.pub
                               id_ed25519.pub
-                              
-  2 eval $(ssh-agent -s)
+                              <br>
+  <h4>2 eval $(ssh-agent -s)<h4>
       Agent pid 59566
-      
-  3 ssh-keygen -t rsa -b 59566 -C "your_email@example.com"
+       <br>
+  <h4>3 ssh-keygen -t rsa -b 59566 -C "your_email@example.com"<h4>
       Enter a file in which to save the key (/c/Users/you/.ssh/id_rsa):[Press enter]
       Enter passphrase (empty for no passphrase): [Type a passphrase]
       Enter same passphrase again: [Type passphrase again]
- 
-  4 eval $(ssh-agent -s)
-  
-  5 ssh-add ~/.ssh/id_rsa
-  
-  6 cat ~/.ssh/id_rsa.pub
-  
-  copy the content and send to madhawa242@gmail.com 
+  <br>
+  <h4>4 eval $(ssh-agent -s)<h4>
+   <br>
+  <h4>5 ssh-add ~/.ssh/id_rsa<h4>
+   <br>
+  <h4>6 cat ~/.ssh/id_rsa.pub<h4>
+   <br>
+  <h4>copy the content and send to madhawa242@gmail.com <h4>
 <hr>
