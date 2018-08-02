@@ -21,3 +21,8 @@ IR-project
   <h4>6 cat ~/.ssh/id_rsa.pub</h4>
   <h4>copy the content and send to madhawa242@gmail.com </h4>
 <hr>
+<h3><b>For first commit</b></h3>
+<h4>go to the location where you want to download files</h4>
+<h4>git clone git@github.com:Madlhawa/Electro.git</h4>
+<h4>git --config --edit</h4>
+<h4>Edit the name with your git username and email with email that you used for git</h4>
