@@ -11,7 +11,7 @@ IR-project
   <h4>2 eval $(ssh-agent -s)</h4>
       Agent pid 59566
        <br>
-  <h4>3 ssh-keygen -t rsa -b 59566 -C "your_email@example.com"</h4>
+  <h4>3 ssh-keygen -t rsa -b 4096 -C "your_email@example.com"</h4>
       Enter a file in which to save the key (/c/Users/you/.ssh/id_rsa):[Press enter]
       Enter passphrase (empty for no passphrase): [Type a passphrase]
       Enter same passphrase again: [Type passphrase again]
