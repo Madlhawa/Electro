@@ -14,66 +14,70 @@ import com.gargoylesoftware.htmlunit.html.HtmlAnchor;
 import com.gargoylesoftware.htmlunit.html.HtmlElement;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
 
-public class Ikman2 { 
+public class lankatronics { 
 	
-	
-	private static final String FILENAME = "D:\\data\\Ikman.json";
+   
+    
+	private static final String FILENAME = "D:\\data\\LankaTronics.json";
 
 	public static void main(String[] args) {
 		
-	for(int i=1;i<=20;i++)
+	for(int i=1;i<=6;i++)
 	{
-		
-		
-		String baseUrl = "https://ikman.lk/en/ads/sri-lanka/electronics" ;
+		//https://www.lankatronics.com/catalogsearch/result/index/?cat=&p=3&q=+arduino
+		String searchQuery = "arduino" ;
+		String baseUrl = "https://www.lankatronics.com/" ;
 		WebClient client = new WebClient();
 		client.getOptions().setCssEnabled(false);
 		client.getOptions().setJavaScriptEnabled(false);
 		
 		
 		try {
+			//https://www.lankatronics.com/catalogsearch/result/?cat=&q=+arduino
+			//https://www.lankatronics.com/catalogsearch/result/index/?cat=&p=2&q=+arduino
 			
-			
-			String searchUrl = baseUrl +"?page="+i;
+			String searchUrl = baseUrl + "catalogsearch/result/index/?cat=&p=" +i+ "&q=+" + URLEncoder.encode(searchQuery, "UTF-8");
+		//	String searchUrl = baseUrl +"?page="+i;
 			HtmlPage page = client.getPage(searchUrl);		
 			
-			List<HtmlElement> items = (List<HtmlElement>) page.getByXPath("//div[@class='ui-item']") ;
+			List<HtmlElement> items = (List<HtmlElement>) page.getByXPath("//li[@class='item product product-item']") ;
 			
-			//System.out.println(page);
+		//	System.out.println(page);
 			
-			//System.out.println(items);
+		//	System.out.println(items);
 			
 			
 		    if(items.isEmpty())
 		    {
 				System.out.println("No items found !");
 			}
-		    else
+		    else 
 		    {
 		    	
 				for(HtmlElement htmlItem : items){
 					
-					HtmlAnchor itemAnchor = ((HtmlAnchor) htmlItem.getFirstByXPath(".//div[@class='item-content']/a"));
+					HtmlAnchor itemAnchor = ((HtmlAnchor) htmlItem.getFirstByXPath(".//div[@class='box-image']/a"));
 					
-					HtmlElement price = ((HtmlElement) htmlItem.getFirstByXPath(".//p[@class='item-info']/strong")) ;
-			
+					HtmlElement title = ((HtmlElement) htmlItem.getFirstByXPath(".//div[@class='product details product-item-details box-info']/h2")) ;
 					
-	
-					HtmlElement itemlocation =((HtmlElement) htmlItem.getFirstByXPath(".//p[@class='item-location']/span[@class='item-area']"));
-					
-					HtmlElement itemcategory =((HtmlElement) htmlItem.getFirstByXPath(".//p[@class='item-location']/span[@class='item-cat']"));
-					
-					HtmlElement itemdistance =((HtmlElement) htmlItem.getFirstByXPath(".//p[@class='item-meta']/span"));
-							
-					
-					
-					Item item = new Item();
+					HtmlElement itemAvailability =((HtmlElement) htmlItem.getFirstByXPath(".//div[@class='stock unavailable']"));
 
-					item.setTitle(itemAnchor.asText());
-				
-					item.setLocation(itemlocation.asText());
 					
-					//item.setPrice(price.asText());
+					HtmlElement price = ((HtmlElement) htmlItem.getFirstByXPath(".//span[@class='price']")) ;
+							
+
+					LankatronicItem item = new LankatronicItem();
+
+					item.setTitle(title.asText());
+				
+					if(itemAvailability==null)
+					{
+						item.setAvailability("Available");
+					
+					}else {
+						
+						item.setAvailability(itemAvailability.asText());
+					}
 					
 					if(price==null)
 					{
@@ -84,9 +88,11 @@ public class Ikman2 {
 						item.setPrice(price.asText());
 					}
 					
-					item.setcategory(itemcategory.asText());
 					
 					item.setUrl(baseUrl + itemAnchor.getHrefAttribute());
+					
+					
+					
 					
 				
 					
@@ -139,6 +145,8 @@ public class Ikman2 {
 			
 		} catch(Exception e){
 			e.printStackTrace();
+			System.out.println(e);
+			
 		}
 
 	}
