@@ -14,18 +14,18 @@ import com.gargoylesoftware.htmlunit.html.HtmlAnchor;
 import com.gargoylesoftware.htmlunit.html.HtmlElement;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
 
-public class lankatronics { 
+public class lankatronics2 {  
 	
    
     
-	private static final String FILENAME = "D:\\data\\LankaTronicsArduino.json";
+	private static final String FILENAME = "D:\\data\\LankaTronicsSensors.json";
 
 	public static void main(String[] args) {
 		
-	for(int i=1;i<=6;i++)
+	for(int i=1;i<=4;i++)
 	{
 		//https://www.lankatronics.com/catalogsearch/result/index/?cat=&p=3&q=+arduino
-		String searchQuery = "arduino" ;
+		String searchQuery = "sensors" ;
 		String baseUrl = "https://www.lankatronics.com/" ;
 		WebClient client = new WebClient();
 		client.getOptions().setCssEnabled(false);
