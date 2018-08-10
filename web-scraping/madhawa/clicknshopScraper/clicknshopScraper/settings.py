@@ -15,8 +15,8 @@ SPIDER_MODULES = ['clicknshopScraper.spiders']
 NEWSPIDER_MODULE = 'clicknshopScraper.spiders'
 
 #Export as CSV Feed
-FEED_FORMAT = "csv"
-FEED_URI = "../../../../data/clicknshop.csv"
+FEED_FORMAT = "json"
+FEED_URI = "../../../../data/clicknshop.json"
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent

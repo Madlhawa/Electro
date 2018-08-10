@@ -8,8 +8,8 @@ class ClicknshopSpider(scrapy.Spider):
     name = 'clicknshop'
     allowed_domains = ['www.clicknshop.lk']
     start_urls = ['https://www.clicknshop.lk/electronics.html?limit=all']
-    if os.path.exists('../../../../data/clicknshop.json') or os.path.exists('../../../../data/clicknshop.csv'):
-        for files in glob.glob("../../../../data/clicknshop.*"):
+    if os.path.exists('../../../../data/clicknshop.json'): #or os.path.exists('../../../../data/clicknshop.csv'):
+        for files in glob.glob("../../../../data/clicknshop.json"):
             os.remove(files)
             print('file found & removed ',files)
 
