@@ -1,5 +1,10 @@
 # Electro
-IR-project
+<h2>IR-project</h2>
+<ul>
+  <li>Project has two main folders. (data and web-scraper)</li>
+  <li><b>data</b> contain the all the data that is scraped by team contain only csv or json files</li>
+  <li>web-scraper contain folder with name of each team member, members must code within their assigned directory</li>
+  
 
 <hr>
 <h3><b>Git hub setup</b></h3>
