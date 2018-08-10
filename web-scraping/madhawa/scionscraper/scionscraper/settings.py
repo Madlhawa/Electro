@@ -15,8 +15,8 @@ SPIDER_MODULES = ['scionscraper.spiders']
 NEWSPIDER_MODULE = 'scionscraper.spiders'
 
 #Export as CSV Feed
-FEED_FORMAT = "csv"
-FEED_URI = "../../../../data/scionlist.csv"
+FEED_FORMAT = "json"
+FEED_URI = "../../../../data/scionlist.json"
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent

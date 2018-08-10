@@ -30,7 +30,6 @@ class ScionSpider(scrapy.Spider):
     def parse_item(self, response):
         print('-------------------------Now running parse_item-----------------------------')
         yield {
-                'Title' : response.xpath('//h1[@class="product_title entry-title"]/text()').extract_first(),
                 'title' : response.xpath('//h1[@class="product_title entry-title"]/text()').extract_first(),
                 'price' : response.xpath('//p[@class="price"]/span/text()').extract_first(),
                 'tags' : response.xpath('//div[@class="product_meta"]/span/a/text()').extract(),
