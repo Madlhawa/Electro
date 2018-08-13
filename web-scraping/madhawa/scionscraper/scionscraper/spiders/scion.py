@@ -8,8 +8,10 @@ class ScionSpider(scrapy.Spider):
     name = 'scion'
     #allowed_domains = ['www.scionelectronics.com']
     start_urls = ['http://scionelectronics.com/']
-    if os.path.exists('../../../../data/scion.json') or os.path.exists('../../../../data/scion.csv'):
-        for files in glob.glob("../../../../data/scion.json"):
+    dump_path = '../../../../data/scion.json'
+
+    if os.path.exists(dump_path) or os.path.exists('../../../../data/scion.csv'):
+        for files in glob.glob(dump_path):
             os.remove(files)
             print('file found & removed ',files)
 
