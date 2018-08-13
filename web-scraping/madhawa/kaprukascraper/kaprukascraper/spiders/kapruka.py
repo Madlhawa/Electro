@@ -14,25 +14,25 @@ class KaprukaSpider(scrapy.Spider):
         print('\x1b[0;33;41m' + 'File found & removed kapruka.json!' + '\x1b[0m')
 
     def parse(self, response):
-        print('running -----------------------------------------|||||||||||||||||||||||||||||||||||||||||MAIN')
+        print('\x1b[1;30;43m' + 'RUNNING-MAIN' + '\x1b[0m')
         for href in response.xpath('//*[@id="parentHorizontalTab"]/ul/li/a/@href'):
             url1 = 'https://www.kapruka.com'+href.extract()
             yield scrapy.Request(url = url1, callback = self.parse_cat)
 
     def parse_cat(self, response):
-        print('RUNNING-CAT')
+        print('\x1b[1;30;43m' + 'RUNNING-CAT' + '\x1b[0m')
         for href in response.xpath('//ul[@class="pagination"]/li/a/@href'):
             url2 = 'https://www.kapruka.com'+href.extract()
             yield scrapy.Request(url = url2, callback = self.parse_page)
 
     def parse_page(self, response):
-        print('RUNNING-PAGE')
+        print('\x1b[1;30;43m' + 'RUNNING-PAGE' + '\x1b[0m')
         for href in response.xpath('/html/body/div[4]/div/div[2]/div/div[1]/div/div[4]/ul/li/div/a[1]/@href'):
             url3 = 'https://www.kapruka.com'+href.extract()
             yield scrapy.Request(url = url3, callback = self.parse_item)
 
     def parse_item(self, response):
-        print('RUNNING-ITEM')
+        print('\x1b[1;30;43m' + 'RUNNING-ITEM' + '\x1b[0m')
         
         title = response.xpath('/html/body/div[4]/div/div[2]/div/div[1]/div/form/div[2]/div/div[2]/div/h2/text()').extract_first()
         category = response.xpath('/html/body/div[4]/div/div[2]/div/div[1]/div/ol/li[2]/a/span/text()').extract_first()
