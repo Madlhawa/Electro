@@ -16,7 +16,7 @@ NEWSPIDER_MODULE = 'buyabans.spiders'
 
 #Export as CSV Feed
 FEED_FORMAT = "json"
-FEED_URI = "buyabansbot.json"
+FEED_URI = "../../../../data/buyabansbot.json"
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
