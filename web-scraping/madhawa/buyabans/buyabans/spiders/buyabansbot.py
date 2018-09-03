@@ -15,6 +15,7 @@ class BuyabansbotSpider(scrapy.Spider):
 
     def parse(self, response):
         print('\x1b[1;30;43m' + 'RUNNING-MAIN' + '\x1b[0m')
+        print('\x1b[1;35;40m' + response.request.url + '\x1b[0m')
         #for href in response.xpath('//*[@id="view-product-list"]/ul/li/a/@href'):
         pages = ["air-conditioners","apple-products","tv","audio","computers","refrigerators","washing-machines","home-appliances","kitchen-appliances","small-appliances","mobile-phones","watch","pos-system"]
         for p in pages:
@@ -24,12 +25,14 @@ class BuyabansbotSpider(scrapy.Spider):
 
     def parse_cat(self, response):
         print('\x1b[1;30;43m' + 'RUNNING-CAT' + '\x1b[0m')
+        print('\x1b[1;35;40m' + response.request.url + '\x1b[0m')  
         for href in response.xpath('//*[@id="filter-container"]/li/a/@href'):
             url2 = href.extract()
             yield scrapy.Request(url = url2, callback = self.parse_item)
 
     def parse_item(self, response):
         print('\x1b[1;30;43m' + 'RUNNING-ITEM' + '\x1b[0m')
+        print('\x1b[1;35;40m' + response.request.url + '\x1b[0m')
         title = response.xpath('//*[@id="product"]/div/div[2]/h1/text()').extract_first()
         price = response.xpath('//*[@id="item_price"]/text()').extract_first()
         description = response.xpath('//*[@id="product-detail"]/*//text()').extract()
