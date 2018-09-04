@@ -49,8 +49,9 @@ class DarazbotSpider(scrapy.Spider):
             print('\x1b[6;30;42m' + str(price)  + '\x1b[0m')
         img = response.xpath('//div[@class="product-preview"]/img/@src').extract_first()
         description = response.xpath('/html/body/main/section[1]/div[2]/div[1]/div[5]/div[2]/ul/li/text()').extract()
-        brand = response.xpath('//div[@class="sub-title"]/a/text()').extract_first()
+        #brand = response.xpath('//div[@class="sub-title"]/a/text()').extract_first()
         url = response.url
+        location = 'online'
         print('\x1b[6;30;42m' + str(title)  + '\x1b[0m')
         print('\x1b[6;30;42m' + str(img)  + '\x1b[0m')
         print('\x1b[6;30;42m' + str(description)  + '\x1b[0m')
@@ -61,6 +62,7 @@ class DarazbotSpider(scrapy.Spider):
                     'price':price,
                     'img':img,
                     'description':description,
-                    'brand':brand,
-                    'url':url
+                    #'brand':brand,
+                    'url':url,
+                    'location' : location
         }

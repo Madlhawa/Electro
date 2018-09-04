@@ -35,9 +35,12 @@ class KaprukaSpider(scrapy.Spider):
         print('\x1b[1;30;43m' + 'RUNNING-ITEM' + '\x1b[0m')
         
         title = response.xpath('/html/body/div[4]/div/div[2]/div/div[1]/div/form/div[2]/div/div[2]/div/h2/text()').extract_first()
-        category = response.xpath('/html/body/div[4]/div/div[2]/div/div[1]/div/ol/li[2]/a/span/text()').extract_first()
+        #category = response.xpath('/html/body/div[4]/div/div[2]/div/div[1]/div/ol/li[2]/a/span/text()').extract_first()
         img = response.xpath('//*[@id="view-product"]/img/@src').extract_first()
         url = response.url
+        price = response.xpath('//div[@class="price"]/strong/text()').extract_first()
+        description = response.xpath('//div[@class="info-wrap"]/*/ul/li/text()').extract()
+        location = 'online'
         
         print('\x1b[6;30;42m' + title  + '\x1b[0m')
         print('\x1b[6;30;42m' + category  + '\x1b[0m')
@@ -46,7 +49,10 @@ class KaprukaSpider(scrapy.Spider):
 
         yield {
             'title' : title,
-            'category' : category,
+            'price' : price,
+            'description' : description,
+            #'category' : category,
             'img' : img,
-            'url' : url
+            'url' : url,
+            'location' : location
         }

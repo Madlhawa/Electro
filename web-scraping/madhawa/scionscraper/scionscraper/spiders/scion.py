@@ -34,8 +34,9 @@ class ScionSpider(scrapy.Spider):
         yield {
                 'title' : response.xpath('//h1[@class="product_title entry-title"]/text()').extract_first(),
                 'price' : response.xpath('//p[@class="price"]/span/text()').extract_first(),
-                'tags' : response.xpath('//div[@class="product_meta"]/span/a/text()').extract(),
-                'discription' : response.xpath('//*[@id="tab-description"]/ul/li/text()').extract(),
+                #'tags' : response.xpath('//div[@class="product_meta"]/span/a/text()').extract(),
+                'description' : response.xpath('//*[@id="tab-description"]/ul/li/text()').extract(),
                 'img' : response.xpath('//div[@class="images"]/a/@href').extract_first(),
-                'url' : response.url
+                'url' : response.url,
+                'location' : 'Malabe'
         }

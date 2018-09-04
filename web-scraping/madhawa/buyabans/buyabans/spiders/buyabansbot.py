@@ -7,7 +7,7 @@ class BuyabansbotSpider(scrapy.Spider):
     name = 'buyabansbot'
     #allowed_domains = ['www.buyabans.com/all-category']
     start_urls = ['https://buyabans.com/all-category']
-    dump_path = '../../../../data/buyabansbot.json'
+    dump_path = '../../../../data/buyabans.json'
 
     if os.path.exists(dump_path):
         os.remove(dump_path)
@@ -38,6 +38,7 @@ class BuyabansbotSpider(scrapy.Spider):
         description = response.xpath('//*[@id="product-detail"]/*//text()').extract()
         img = response.xpath('//*[@id="zoom_03"]/@src').extract_first()
         url = response.url
+        location = 'online'
 
         print('\x1b[6;30;42m' + title  + '\x1b[0m')
         print('\x1b[6;30;42m' + price  + '\x1b[0m')
@@ -50,5 +51,6 @@ class BuyabansbotSpider(scrapy.Spider):
                 'price' : price,
                 'description' : description,
                 'img' : img,
-                'url' : url
+                'url' : url,
+                'location' : location
         }
