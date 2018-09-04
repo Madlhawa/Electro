@@ -14,10 +14,14 @@ class DarazbotSpider(scrapy.Spider):
         print('\x1b[0;33;41m' + 'File found & removed' + dump_path + '\x1b[0m')
 
     def parse(self, response):
+        i = 0
         for href in response.xpath('//*[@id="menuFixed"]/ul/li/a/@href'):
+            i = i+1
             url1 = href.extract()
             print('\x1b[1;35;40m' + url1 + '\x1b[0m')
-            yield scrapy.Request(url = url1, callback = self.parse_category)
+            if(i==1 or i==3 or i==4 or i==8):
+                print('\x1b[1;35;44m' + url1 + '\x1b[0m')
+                yield scrapy.Request(url = url1, callback = self.parse_category)
 
     def parse_category(self, response):
         pages = response.xpath('//section[@class="pagination"]/ul/li/a/@title').extract()
@@ -38,18 +42,25 @@ class DarazbotSpider(scrapy.Spider):
     def parse_item(self, response):
         title = response.xpath('//h1[@class="title"]/text()').extract_first()
         price = response.xpath('//span[@class="price"]/span[@dir="ltr"]/@data-price').extract_first()
+        if(str(price)=='None'):
+            price = response.xpath('//span[@class="price -no-special"]/span[@dir="ltr"]/@data-price').extract_first() 
+            print('\x1b[6;30;43m' + str(price)  + '\x1b[0m')
+        else:
+            print('\x1b[6;30;42m' + str(price)  + '\x1b[0m')
         img = response.xpath('//div[@class="product-preview"]/img/@src').extract_first()
         description = response.xpath('/html/body/main/section[1]/div[2]/div[1]/div[5]/div[2]/ul/li/text()').extract()
         brand = response.xpath('//div[@class="sub-title"]/a/text()').extract_first()
+        url = response.url
         print('\x1b[6;30;42m' + str(title)  + '\x1b[0m')
-        print('\x1b[6;30;42m' + str(price)  + '\x1b[0m')
         print('\x1b[6;30;42m' + str(img)  + '\x1b[0m')
         print('\x1b[6;30;42m' + str(description)  + '\x1b[0m')
         print('\x1b[6;30;42m' + str(brand)  + '\x1b[0m')
+        print('\x1b[6;30;42m' + str(url)  + '\x1b[0m')
         yield{
                     'title':title,
                     'price':price,
                     'img':img,
                     'description':description,
-                    'brand':brand
+                    'brand':brand,
+                    'url':url
         }
