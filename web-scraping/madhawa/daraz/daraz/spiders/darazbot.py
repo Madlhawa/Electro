@@ -55,7 +55,7 @@ class DarazbotSpider(scrapy.Spider):
         print('\x1b[6;30;42m' + str(title)  + '\x1b[0m')
         print('\x1b[6;30;42m' + str(img)  + '\x1b[0m')
         print('\x1b[6;30;42m' + str(description)  + '\x1b[0m')
-        print('\x1b[6;30;42m' + str(brand)  + '\x1b[0m')
+        #print('\x1b[6;30;42m' + str(brand)  + '\x1b[0m')
         print('\x1b[6;30;42m' + str(url)  + '\x1b[0m')
         yield{
                     'title':title,

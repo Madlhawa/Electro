@@ -34,10 +34,10 @@ class ClicknshopSpider(scrapy.Spider):
         location = 'online'
         print('\x1b[6;30;42m' + Title + '\x1b[0m')
         print('\x1b[6;30;42m' + Price + '\x1b[0m')
-        print('\x1b[6;30;42m' + str(Stock) + '\x1b[0m')
-        print('\x1b[6;30;42m' + Warranty + '\x1b[0m')
-        print('\x1b[6;30;42m' + str(Discription) + '\x1b[0m')
-        print('\x1b[6;30;42m' + str(Specification) + '\x1b[0m')
+        #print('\x1b[6;30;42m' + str(Stock) + '\x1b[0m')
+        #print('\x1b[6;30;42m' + Warranty + '\x1b[0m')
+        print('\x1b[6;30;42m' + str(description) + '\x1b[0m')
+        #print('\x1b[6;30;42m' + str(Specification) + '\x1b[0m')
         print('\x1b[6;30;42m' + img + '\x1b[0m')
         print('\x1b[6;30;42m' + url + '\x1b[0m')
         yield {

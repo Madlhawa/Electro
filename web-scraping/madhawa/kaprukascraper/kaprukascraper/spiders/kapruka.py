@@ -43,7 +43,7 @@ class KaprukaSpider(scrapy.Spider):
         location = 'online'
         
         print('\x1b[6;30;42m' + title  + '\x1b[0m')
-        print('\x1b[6;30;42m' + category  + '\x1b[0m')
+        #print('\x1b[6;30;42m' + category  + '\x1b[0m')
         print('\x1b[6;30;42m' + img  + '\x1b[0m')
         print('\x1b[6;30;42m' + url  + '\x1b[0m')
 
