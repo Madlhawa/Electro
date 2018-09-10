@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
-import scrapy
+import re
 import os
+import scrapy
+import unicodedata
+from money_parser import price_str
 
 
 class KaprukaSpider(scrapy.Spider):
@@ -38,18 +41,21 @@ class KaprukaSpider(scrapy.Spider):
         #category = response.xpath('/html/body/div[4]/div/div[2]/div/div[1]/div/ol/li[2]/a/span/text()').extract_first()
         img = response.xpath('//*[@id="view-product"]/img/@src').extract_first()
         url = response.url
-        price = response.xpath('//div[@class="price"]/strong/text()').extract_first()
-        description = response.xpath('//div[@class="info-wrap"]/*/ul/li/text()').extract()
+        price = price_str(response.xpath('//div[@class="price"]/strong/text()').extract_first())
+        #description = response.xpath('//div[@class="info-wrap"]/*/ul/li/text()').extract()
+        description = re.sub( '\s+', ' ', unicodedata.normalize("NFKD",''.join(response.xpath('//div[@class="info-wrap"]/*/ul/li/text()').extract()))) ).strip()
         location = 'online'
         
         print('\x1b[6;30;42m' + title  + '\x1b[0m')
         #print('\x1b[6;30;42m' + category  + '\x1b[0m')
+        print('\x1b[6;30;42m' + price  + '\x1b[0m')
+        print('\x1b[6;30;42m' + description  + '\x1b[0m')
         print('\x1b[6;30;42m' + img  + '\x1b[0m')
         print('\x1b[6;30;42m' + url  + '\x1b[0m')
 
         yield {
             'title' : title,
-            'price' : price,
+            'price' : float(price),
             'description' : description,
             #'category' : category,
             'img' : img,
