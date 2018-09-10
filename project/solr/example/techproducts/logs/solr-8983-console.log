@@ -1,0 +1,13 @@
+1521 [main] INFO  org.eclipse.jetty.util.log [] [   ] org.eclipse.jetty.util.log; Logging initialized @1636ms to org.eclipse.jetty.util.log.Slf4jLog
+1801 [main] INFO  org.eclipse.jetty.server.Server [] [   ] org.eclipse.jetty.server.Server; jetty-9.4.10.v20180503; built: 2018-05-03T15:56:21.710Z; git: daa59876e6f384329b122929e70a80934569428c; jvm 1.8.0_181-8u181-b13-1~deb9u1-b13
+1849 [main] INFO  org.eclipse.jetty.deploy.providers.ScanningAppProvider [] [   ] org.eclipse.jetty.deploy.providers.ScanningAppProvider; Deployment monitor [file:///opt/solr-7.4.0/server/contexts/] at interval 0
+2307 [main] INFO  org.eclipse.jetty.webapp.StandardDescriptorProcessor [] [   ] org.eclipse.jetty.webapp.StandardDescriptorProcessor; NO JSP Support for /solr, did not find org.apache.jasper.servlet.JspServlet
+2323 [main] INFO  org.eclipse.jetty.server.session [] [   ] org.eclipse.jetty.server.session; DefaultSessionIdManager workerName=node0
+2323 [main] INFO  org.eclipse.jetty.server.session [] [   ] org.eclipse.jetty.server.session; No SessionScavenger set, using defaults
+2325 [main] INFO  org.eclipse.jetty.server.session [] [   ] org.eclipse.jetty.server.session; node0 Scavenging every 660000ms
+2390 [main] INFO  org.apache.solr.util.configuration.SSLCredentialProviderFactory [] [   ] org.apache.solr.util.configuration.SSLCredentialProviderFactory; Processing SSL Credential Provider chain: env;sysprop
+2437 [main] INFO  org.apache.solr.servlet.SolrDispatchFilter [] [   ] org.apache.solr.servlet.SolrDispatchFilter; Using logger factory org.apache.logging.slf4j.Log4jLoggerFactory
+2450 [main] INFO  org.apache.solr.servlet.SolrDispatchFilter [] [   ] org.apache.solr.servlet.SolrDispatchFilter;  ___      _       Welcome to Apache Solr™ version 7.4.0
+2455 [main] INFO  org.apache.solr.servlet.SolrDispatchFilter [] [   ] org.apache.solr.servlet.SolrDispatchFilter; / __| ___| |_ _   Starting in standalone mode on port 8983
+2455 [main] INFO  org.apache.solr.servlet.SolrDispatchFilter [] [   ] org.apache.solr.servlet.SolrDispatchFilter; \__ \/ _ \ | '_|  Install dir: /opt/solr
+2455 [main] INFO  org.apache.solr.servlet.SolrDispatchFilter [] [   ] org.apache.solr.servlet.SolrDispatchFilter; |___/\___/_|_|    Start time: 2018-09-10T08:26:58.739Z
