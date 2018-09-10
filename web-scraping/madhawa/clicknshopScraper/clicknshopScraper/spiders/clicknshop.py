@@ -36,7 +36,7 @@ class ClicknshopSpider(scrapy.Spider):
         url = response.url
         location = 'online'
         print('\x1b[6;30;42m' + Title + '\x1b[0m')
-        print('\x1b[6;30;42m' + str(Price): + '\x1b[0m')
+        print('\x1b[6;30;42m' + str(Price) + '\x1b[0m')
         print('\x1b[6;30;42m' + str(description) + '\x1b[0m')
         print('\x1b[6;30;42m' + img + '\x1b[0m')
         print('\x1b[6;30;42m' + url + '\x1b[0m')
