@@ -6,7 +6,7 @@ import unicodedata
 from re import sub
 from decimal import Decimal
 import glob
-import money-parser
+from money_parser import price_str
 
 
 class ClicknshopSpider(scrapy.Spider):
