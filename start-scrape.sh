@@ -10,3 +10,7 @@ cd ../../scionscraper/scionscraper/;
 scrapy crawl scion;
 cd ../../daraz/daraz/;
 scrapy crawl darazbot;
+git pull;
+git add .;
+git commit -a -m "Automated scrape";
+git push;
