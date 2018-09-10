@@ -37,9 +37,7 @@ class BuyabansbotSpider(scrapy.Spider):
         print('\x1b[1;35;40m' + response.request.url + '\x1b[0m')
         title = response.xpath('//*[@id="product"]/div/div[2]/h1/text()').extract_first()
         price = response.xpath('//*[@id="item_price"]/text()').extract_first()
-        description1 = response.xpath('//*[@id="product-detail"]/*//text()').extract()
-        description2 = unicodedata.normalize("NFKD",''.join(description1))
-        description = re.sub( '\s+', ' ', description2 ).strip()
+        description = re.sub( '\s+', ' ', unicodedata.normalize("NFKD",''.join(response.xpath('//*[@id="product-detail"]/*//text()').extract())) ).strip()
         img = response.xpath('//*[@id="zoom_03"]/@src').extract_first()
         url = response.url
         location = 'online'
