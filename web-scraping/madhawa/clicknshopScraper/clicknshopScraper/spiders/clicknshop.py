@@ -36,10 +36,11 @@ class ClicknshopSpider(scrapy.Spider):
         url = response.url
         location = 'online'
         print('\x1b[6;30;42m' + Title + '\x1b[0m')
-        print('\x1b[6;30;42m' + Price + '\x1b[0m')
+        print('\x1b[6;30;42m' + str(Price): + '\x1b[0m')
         print('\x1b[6;30;42m' + str(description) + '\x1b[0m')
         print('\x1b[6;30;42m' + img + '\x1b[0m')
         print('\x1b[6;30;42m' + url + '\x1b[0m')
+        print('\x1b[6;30;42m' + location + '\x1b[0m')
         #Stock = response.xpath('//p[@class="availability in-stock"]/span/text()').extract_first()
         #Warranty = response.xpath('//div[@class="ProductInfo warranty d-flex"]/span/text()').extract_first()
         #Discription = list(response.xpath('//div[@id="pd1"]/ul/li/text()').extract())
