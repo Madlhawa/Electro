@@ -29,7 +29,7 @@ class ClicknshopSpider(scrapy.Spider):
         print('\x1b[1;35;40m' + response.request.url + '\x1b[0m')
         Title = response.xpath('//span[@class="nameCont"]/text()').extract_first()
         #Price = response.xpath('//span[@class="price"]/text()').extract()[1]
-        Price = re.findall("\d+", response.xpath('//span[@class="nameCont"]/text()').extract_first())
+        Price = re.findall("?:[\£\$\€\'Rs.']{1}[,\d]+.?\d*", response.xpath('//span[@class="nameCont"]/text()').extract_first())
         #description = list(response.xpath('//*[@id="product-attribute-specs-table"]/tbody/tr[10]/td/text()').extract())
         description = re.sub( '\s+', ' ', unicodedata.normalize("NFKD",''.join(list(response.xpath('//*[@id="product-attribute-specs-table"]/tbody/tr[10]/td/text()').extract()))) ).strip()
         img = response.xpath('//*[@id="image-0"]/@src').extract_first()
