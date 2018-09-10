@@ -48,7 +48,7 @@ class ClicknshopSpider(scrapy.Spider):
         
         yield {
                 'title' : Title,
-                'price' : Price,
+                'price' : float(Price),
                 'description' : description,
                 'img' : img,
                 'url' : url,
