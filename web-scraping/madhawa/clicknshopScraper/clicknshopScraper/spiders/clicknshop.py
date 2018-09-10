@@ -3,9 +3,6 @@ import re
 import os
 import scrapy
 import unicodedata
-from re import sub
-from decimal import Decimal
-import glob
 from money_parser import price_str
 
 
