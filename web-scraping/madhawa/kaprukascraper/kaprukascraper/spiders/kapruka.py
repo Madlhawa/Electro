@@ -43,7 +43,7 @@ class KaprukaSpider(scrapy.Spider):
         url = response.url
         price = price_str(response.xpath('//div[@class="price"]/strong/text()').extract_first())
         #description = response.xpath('//div[@class="info-wrap"]/*/ul/li/text()').extract()
-        description = re.sub( '\s+', ' ', unicodedata.normalize("NFKD",''.join(response.xpath('//div[@class="info-wrap"]/*/ul/li/text()').extract()))) ).strip()
+        description = re.sub( '\s+', ' ', unicodedata.normalize("NFKD",''.join(list(response.xpath('//div[@class="info-wrap"]/*/ul/li/text()').extract()))) ).strip()
         location = 'online'
         
         print('\x1b[6;30;42m' + title  + '\x1b[0m')
