@@ -1,6 +1,6 @@
 #!/bin/bash
-#source /home/madhawa242/python-environments/scrapy_env/bin/activate
-#cd web-scraping/madhawa/kaprukascraper/kaprukascraper/;
+source /home/madhawa242/python-environments/scrapy_env/bin/activate
+cd web-scraping/madhawa/kaprukascraper/kaprukascraper/;
 #scrapy crawl kapruka;
 cd ../../buyabans/buyabans/;
 #scrapy crawl buyabansbot;
