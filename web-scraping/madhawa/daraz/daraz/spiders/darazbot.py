@@ -44,9 +44,9 @@ class DarazbotSpider(scrapy.Spider):
 
     def parse_item(self, response):
         title = response.xpath('//h1[@class="title"]/text()').extract_first()
-        price = price_str(response.xpath('//span[@class="price"]/span[@dir="ltr"]/@data-price').extract_first())
+        price = response.xpath('//span[@class="price"]/span[@dir="ltr"]/@data-price').extract_first()
         if(str(price)=='None'):
-            price = price_str(response.xpath('//span[@class="price -no-special"]/span[@dir="ltr"]/@data-price').extract_first())
+            price = response.xpath('//span[@class="price -no-special"]/span[@dir="ltr"]/@data-price').extract_first()
             print('\x1b[6;30;43m' + str(price)  + '\x1b[0m')
         else:
             print('\x1b[6;30;42m' + str(price)  + '\x1b[0m')
@@ -63,7 +63,7 @@ class DarazbotSpider(scrapy.Spider):
         print('\x1b[6;30;42m' + str(url)  + '\x1b[0m')
         yield{
                     'title':title,
-                    'price':float(price),
+                    'price':float(price_str(price)),
                     'img':img,
                     'description':description,
                     'url':url,
