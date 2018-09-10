@@ -41,7 +41,8 @@ class KaprukaSpider(scrapy.Spider):
         #category = response.xpath('/html/body/div[4]/div/div[2]/div/div[1]/div/ol/li[2]/a/span/text()').extract_first()
         img = response.xpath('//*[@id="view-product"]/img/@src').extract_first()
         url = response.url
-        price = price_str(response.xpath('//div[@class="price"]/strong/text()').extract_first())
+        #price = response.xpath('//div[@class="price"]/strong/text()').extract_first()
+        price = ''.join(re.findall(r'\d+', response.xpath('//div[@class="price"]/strong/text()').extract_first()))
         #description = response.xpath('//div[@class="info-wrap"]/*/ul/li/text()').extract()
         description = re.sub( '\s+', ' ', unicodedata.normalize("NFKD",''.join(list(response.xpath('//div[@class="info-wrap"]/*/ul/li/text()').extract()))) ).strip()
         location = 'online'
