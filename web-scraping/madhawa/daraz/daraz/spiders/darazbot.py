@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
-import scrapy
+import re
 import os
+import scrapy
+import unicodedata
+from money_parser import price_str
 
 
 class DarazbotSpider(scrapy.Spider):
@@ -41,28 +44,28 @@ class DarazbotSpider(scrapy.Spider):
 
     def parse_item(self, response):
         title = response.xpath('//h1[@class="title"]/text()').extract_first()
-        price = response.xpath('//span[@class="price"]/span[@dir="ltr"]/@data-price').extract_first()
+        price = price_str(response.xpath('//span[@class="price"]/span[@dir="ltr"]/@data-price').extract_first())
         if(str(price)=='None'):
-            price = response.xpath('//span[@class="price -no-special"]/span[@dir="ltr"]/@data-price').extract_first() 
+            price = price_str(response.xpath('//span[@class="price -no-special"]/span[@dir="ltr"]/@data-price').extract_first())
             print('\x1b[6;30;43m' + str(price)  + '\x1b[0m')
         else:
             print('\x1b[6;30;42m' + str(price)  + '\x1b[0m')
         img = response.xpath('//div[@class="product-preview"]/img/@src').extract_first()
-        description = response.xpath('/html/body/main/section[1]/div[2]/div[1]/div[5]/div[2]/ul/li/text()').extract()
+        #description = response.xpath('/html/body/main/section[1]/div[2]/div[1]/div[5]/div[2]/ul/li/text()').extract()
+        description = re.sub( '\s+', ' ', unicodedata.normalize("NFKD",''.join(list(response.xpath('/html/body/main/section[1]/div[2]/div[1]/div[5]/div[2]/ul/li/text()').extract()))) ).strip()
         #brand = response.xpath('//div[@class="sub-title"]/a/text()').extract_first()
         url = response.url
         location = 'online'
         print('\x1b[6;30;42m' + str(title)  + '\x1b[0m')
         print('\x1b[6;30;42m' + str(img)  + '\x1b[0m')
         print('\x1b[6;30;42m' + str(description)  + '\x1b[0m')
-        #print('\x1b[6;30;42m' + str(brand)  + '\x1b[0m')
+        print('\x1b[6;30;42m' + str(price)  + '\x1b[0m')
         print('\x1b[6;30;42m' + str(url)  + '\x1b[0m')
         yield{
                     'title':title,
-                    'price':price,
+                    'price':float(price),
                     'img':img,
                     'description':description,
-                    #'brand':brand,
                     'url':url,
                     'location' : location
         }
