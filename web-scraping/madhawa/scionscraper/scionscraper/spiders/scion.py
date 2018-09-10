@@ -1,7 +1,10 @@
 # -*- coding: utf-8 -*-
-import scrapy
+import re
 import os
 import glob
+import scrapy
+import unicodedata
+from money_parser import price_str
 
 
 class ScionSpider(scrapy.Spider):
@@ -32,11 +35,12 @@ class ScionSpider(scrapy.Spider):
     def parse_item(self, response):
         print('-------------------------Now running parse_item-----------------------------')
         yield {
-                'title' : response.xpath('//h1[@class="product_title entry-title"]/text()').extract_first(),
-                'price' : response.xpath('//p[@class="price"]/span/text()').extract_first(),
+                'title' : re.sub( '\s+', ' ', unicodedata.normalize("NFKD",''.join(list(response.xpath('//h1[@class="product_title entry-title"]/text()').extract_first()))) ).strip(),
+                'price' : float(price_str(response.xpath('//p[@class="price"]/span/text()').extract_first())),
                 #'tags' : response.xpath('//div[@class="product_meta"]/span/a/text()').extract(),
-                'description' : response.xpath('//*[@id="tab-description"]/ul/li/text()').extract(),
+                'description' : re.sub( '\s+', ' ', unicodedata.normalize("NFKD",''.join(list(response.xpath('//*[@id="tab-description"]/ul/li/text()').extract()))) ).strip(),
                 'img' : response.xpath('//div[@class="images"]/a/@href').extract_first(),
                 'url' : response.url,
                 'location' : 'Malabe'
         }
+       
