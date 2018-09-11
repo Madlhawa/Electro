@@ -38,7 +38,7 @@ class ScionSpider(scrapy.Spider):
                 'title' : re.sub( '\s+', ' ', unicodedata.normalize("NFKD",''.join(list(response.xpath('//h1[@class="product_title entry-title"]/text()').extract_first()))) ).strip(),
                 'price' : float(price_str(response.xpath('//p[@class="price"]/span/text()').extract_first())),
                 #'tags' : response.xpath('//div[@class="product_meta"]/span/a/text()').extract(),
-                'description' : re.sub( '\s+', ' ', unicodedata.normalize("NFKD",''.join(list(response.xpath('//*[@id="tab-description"]/ul/li/text()').extract()))) ).strip(),
+                'description' : re.sub( '\s+', ' ', unicodedata.normalize("NFKD",' '.join(list(response.xpath('//*[@id="tab-description"]/ul/li/text()').extract()))) ).strip(),
                 'img' : response.xpath('//div[@class="images"]/a/@href').extract_first(),
                 'url' : response.url,
                 'location' : 'Malabe'
