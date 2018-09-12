@@ -123,8 +123,7 @@ public class lankatronics4 {
 							if (bw != null)
 								bw.close();
 
-							if (fw != null)
-								fw.close();
+							
 
 						} catch (IOException ex) {
 
