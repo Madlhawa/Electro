@@ -50,22 +50,22 @@ class DarazbotSpider(scrapy.Spider):
             print('\x1b[6;30;43m' + str(price)  + '\x1b[0m')
         else:
             print('\x1b[6;30;42m' + str(price)  + '\x1b[0m')
-        img = response.xpath('//*[@id="module_item_gallery_1"]/div/div[1]/div/img/@src').extract_first()
+        #img = response.xpath('//img/@src').extract_first()
         #description = response.xpath('/html/body/main/section[1]/div[2]/div[1]/div[5]/div[2]/ul/li/text()').extract()
-        description = re.sub( '\s+', ' ', unicodedata.normalize("NFKD",''.join(list(response.xpath('/html/body/main/section[1]/div[2]/div[1]/div[5]/div[2]/ul/li/text()').extract()))) ).strip()
+        #description = re.sub( '\s+', ' ', unicodedata.normalize("NFKD",''.join(list(response.xpath('/html/body/main/section[1]/div[2]/div[1]/div[5]/div[2]/ul/li/text()').extract()))) ).strip()
         #brand = response.xpath('//div[@class="sub-title"]/a/text()').extract_first()
         url = response.url
         location = 'online'
         print('\x1b[6;30;42m' + str(title)  + '\x1b[0m')
-        print('\x1b[6;30;42m' + str(img)  + '\x1b[0m')
-        print('\x1b[6;30;42m' + str(description)  + '\x1b[0m')
+        #print('\x1b[6;30;42m' + str(img)  + '\x1b[0m')
+        #print('\x1b[6;30;42m' + str(description)  + '\x1b[0m')
         print('\x1b[6;30;42m' + str(price)  + '\x1b[0m')
         print('\x1b[6;30;42m' + str(url)  + '\x1b[0m')
         yield{
                     'title':title,
                     'price':float(price_str(price)),
-                    'img':img,
-                    'description':description,
+                    #'img':img,
+                    #'description':description,
                     'url':url,
                     'location' : location
         }
