@@ -34,11 +34,13 @@ class ScionSpider(scrapy.Spider):
 
     def parse_item(self, response):
         print('-------------------------Now running parse_item-----------------------------')
+        description = re.sub( '\s+', ' ', unicodedata.normalize("NFKD",' '.join(response.xpath('//*[@id="tab-description"]/ul/li/text()').extract()))).strip(),
+
         yield {
                 'title' : re.sub( '\s+', ' ', unicodedata.normalize("NFKD",''.join(list(response.xpath('//h1[@class="product_title entry-title"]/text()').extract_first()))) ).strip(),
-                'price' : float(''.join(re.findall(r'\d+', response.xpath('//p[@class="price"]/span/text()').extract_first())))
+                'price' : float(''.join(re.findall(r'\d+', response.xpath('//p[@class="price"]/span/text()').extract_first()))),
                 #'tags' : response.xpath('//div[@class="product_meta"]/span/a/text()').extract(),
-                'description' : re.sub( '\s+', ' ', unicodedata.normalize("NFKD",' '.join(list(response.xpath('//*[@id="tab-description"]/ul/li/text()').extract()))) ).strip(),
+                'description' : description,
                 'img' : response.xpath('//div[@class="images"]/a/@href').extract_first(),
                 'url' : response.url,
                 'location' : 'Malabe',

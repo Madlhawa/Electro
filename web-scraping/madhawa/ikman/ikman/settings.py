@@ -14,6 +14,9 @@ BOT_NAME = 'ikman'
 SPIDER_MODULES = ['ikman.spiders']
 NEWSPIDER_MODULE = 'ikman.spiders'
 
+#Export as json Feed
+FEED_FORMAT = "json"
+FEED_URI = "../../../../data/ikman.json"
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'ikman (+http://www.yourdomain.com)'

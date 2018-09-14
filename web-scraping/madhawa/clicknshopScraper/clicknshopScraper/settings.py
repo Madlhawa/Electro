@@ -14,7 +14,7 @@ BOT_NAME = 'clicknshopScraper'
 SPIDER_MODULES = ['clicknshopScraper.spiders']
 NEWSPIDER_MODULE = 'clicknshopScraper.spiders'
 
-#Export as CSV Feed
+#Export as json Feed
 FEED_FORMAT = "json"
 FEED_URI = "../../../../data/clicknshop.json"
 
