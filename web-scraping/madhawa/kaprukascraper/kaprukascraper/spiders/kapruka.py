@@ -61,5 +61,7 @@ class KaprukaSpider(scrapy.Spider):
             #'category' : category,
             'img' : img,
             'url' : url,
-            'location' : location
+            'location' : location,
+            'store' : "Kapruka",
+            'condition' : "New"
         }

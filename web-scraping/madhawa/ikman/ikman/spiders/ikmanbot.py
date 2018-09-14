@@ -36,18 +36,22 @@ class IkmanbotSpider(scrapy.Spider):
         price = price_str(response.xpath('//div[@class="ui-price-tag"]/span[@class="amount"]/text()').extract_first())
         url = response.url
         img = "na"
+        condition = response.xpath('//div[@class="item-properties"]/dl/dd/text()').extract_first()
         print('\x1b[6;30;42m' + str(title)  + '\x1b[0m')
         print('\x1b[6;30;42m' + str(location)  + '\x1b[0m')
         print('\x1b[6;30;42m' + str(description)  + '\x1b[0m')
         print('\x1b[6;30;42m' + str(price)  + '\x1b[0m')
         print('\x1b[6;30;42m' + str(url)  + '\x1b[0m')
+        print('\x1b[6;30;42m' + str(condition)  + '\x1b[0m')
         yield {
                 'title' : title,
                 'price' : float(price),
                 'description' : description,
                 'img' : img,
                 'url' : url,
-                'location' : location
+                'location' : location,
+                'store' : "Ikman",
+                'condition' : condition
         }
 
 

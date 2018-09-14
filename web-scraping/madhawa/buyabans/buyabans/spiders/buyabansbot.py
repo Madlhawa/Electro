@@ -56,5 +56,7 @@ class BuyabansbotSpider(scrapy.Spider):
                 'description' : description,
                 'img' : img,
                 'url' : url,
-                'location' : location
+                'location' : location,
+                'store' : "Buyabans",
+                'condition': "New"
         }
