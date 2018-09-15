@@ -16,7 +16,7 @@ NEWSPIDER_MODULE = 'scionscraper.spiders'
 
 #Export as CSV Feed
 FEED_FORMAT = "json"
-FEED_URI = "../../../../data/scionlist.json"
+FEED_URI = "../../../../data/scion.json"
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent

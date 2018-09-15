@@ -13,7 +13,7 @@ class ScionSpider(scrapy.Spider):
     start_urls = ['http://scionelectronics.com/']
     dump_path = '../../../../data/scion.json'
 
-    if os.path.exists(dump_path) or os.path.exists('../../../../data/scion.csv'):
+    if os.path.exists(dump_path):
         for files in glob.glob(dump_path):
             os.remove(files)
             print('file found & removed ',files)
