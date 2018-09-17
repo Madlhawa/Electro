@@ -11,7 +11,7 @@ cd ../../scionscraper/scionscraper/;
 cd ../../daraz/daraz/;
 #scrapy crawl darazbot;
 cd ../../ikman/ikman;
-#scrapy crawl ikmanbot;
+scrapy crawl ikmanbot;
 cd ../../../kaveesha/LankaTronics/LankaTronics;
 scrapy crawl lankat;
 git pull;
