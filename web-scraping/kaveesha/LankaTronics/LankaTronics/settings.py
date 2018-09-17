@@ -23,8 +23,9 @@ ROBOTSTXT_OBEY = False
 
 
 #FEED_FORMAT = "json"
-#FEED_URI = "C:/Users/chamu/Desktop/buyabans/buyabans.json"
-# Configure maximum concurrent requests performed by Scrapy (default: 16)
+#FEED_URI = "../../../../data/lankatronics.json"
+
+#Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
 
 # Configure a delay for requests for the same website (default: 0)
