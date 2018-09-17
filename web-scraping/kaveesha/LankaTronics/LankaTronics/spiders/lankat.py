@@ -12,9 +12,7 @@ class LankatSpider(scrapy.Spider):
 
 
 	def parse(self, response):
-
 		pages = ["development-tools","top-brands","modules-sensors","robot-accessories","semiconductors","power-supplies","accessories","passive-components","electromechanical"]
-
 		for p in pages:
 			url1 = 'https://www.lankatronics.com/' + p +'.html'
 			yield scrapy.Request(url = url1, callback = self.parse_page)
@@ -27,19 +25,14 @@ class LankatSpider(scrapy.Spider):
 			yield scrapy.Request(url1, callback=self.parse_cat)
 
 	def parse_cat(self, response):
-		
 		print('url is ' + response.request.url + ' correct url')
-		#//*[@id="maincontent"]/div/div/div/div[1]/div[3]/div[3]/ol/li[1]/div/div/div[1]/a  
-		#//li[@id="item product product-item"]/div/div/div/a
-		for href in response.xpath('//li[@class="item product product-item"]/div/div/div/a/@href').extract():
-			print('Href is' + str(href) + 'href is working')
-			url2 = href
-			yield scrapy.Request(url = url2, callback = self.parse_item)
+		for href in response.xpath('//a[@class="product-item-link"]/@href').extract():
+		    print('Href is' + str(href) + 'href is working')
+		    url2 = href
+		    yield scrapy.Request(url = url2, callback = self.parse_item)
 
-	def parse_item(self, response):
-		
-		#//*[@id="maincontent"]/div/div/div/div/div[2]/div[2]/div/div/div/div[2]/div/div[1]/div[1]/h1/span
-		title = response.xpath('//*[@id="maincontent"]/div/div/div/div/div[2]/div[2]/div/div/div/div[2]/div/div[1]/div[1]/h1/span/text()').extract_first()
+	def parse_item(self, response):	
+		title = response.xpath('//1/span/text()').extract_first()
 		#//*[@id="product-price-4117"]/span
 		print('dddddddddddddddd')
 		#//*[@id="maincontent"]/div/div/div/div/div[2]/div[2]/div/div[1]/div/div[2]/div/div[1]/div[2]/div[2]
