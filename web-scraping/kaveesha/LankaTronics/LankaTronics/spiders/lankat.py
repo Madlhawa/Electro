@@ -9,11 +9,11 @@ class LankatSpider(scrapy.Spider):
 	name = 'lankat'
 	#allowed_domains = ['https://www.lankatronics.com/']
 	start_urls = ['https://www.lankatronics.com/']
-    	dump_path = '../../../../data/lankaT.json'
+    	#dump_path = '../../../../data/lankaT.json'
 
-    	if os.path.exists(dump_path):
-        	os.remove(dump_path)
-        	print('\x1b[0;33;41m' + 'File found & removed ' + dump_path + '!' + '\x1b[0m')
+    	#if os.path.exists(dump_path):
+        	#os.remove(dump_path)
+        	#print('\x1b[0;33;41m' + 'File found & removed ' + dump_path + '!' + '\x1b[0m')
 
 	def parse(self, response):
 		print('\x1b[1;30;43m' + 'RUNNING-MAIN' + '\x1b[0m')
