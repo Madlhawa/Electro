@@ -32,31 +32,18 @@ class LankatSpider(scrapy.Spider):
 		    yield scrapy.Request(url = url2, callback = self.parse_item)
 
 	def parse_item(self, response):	
-		title = response.xpath('//1/span/text()').extract_first()
-		#//*[@id="product-price-4117"]/span
-		print('dddddddddddddddd')
-		#//*[@id="maincontent"]/div/div/div/div/div[2]/div[2]/div/div[1]/div/div[2]/div/div[1]/div[2]/div[2]
-		price = price_str(str(response.xpath('//div[@class="price-box price-final_price"]/span/span/span/text()').extract_first()))
-	
+		title = response.xpath('//h1[@class="page-title"]/span/text()').extract_first()
+		price = price_str(str(response.xpath('//span[@class="price"]/text()').extract_first()))
 		if price is None:
 			price=00.00
 		else:
 			price=price
-       
-		   
-		#//*[@id="product.info.description"]/div/div/p[1]/text()
-		description = re.sub( '\s+', ' ', unicodedata.normalize("NFKD",''.join(response.xpath('//*[@id="product.info.description"]/div/div/p[1]/text()').extract())) ).strip()
-	
-
-		#//*[@id="maincontent"]/div/div/div/div/div[2]/div[2]/div/div[1]/div/div[1]/div/div[2]/div[2]/div[2]/div[1]/div[3]/div[2]/img
+		description = re.sub( '\s+', ' ', unicodedata.normalize("NFKD",''.join(response.xpath('//div[@class="product attribute description"]/div//text()').extract())) ).strip()
 		img = response.xpath('//*//*[@id="magnifier-item-0"]/@src').extract_first()
-		#//*[@id="maincontent"]/div/div/div/div/div[2]/div[2]/div/div/div/div[1]/div/div[2]/div[2]/div[2]/div[1]/div[3]/div
 		url = response.url
 		location = 'online'
+		condition ='New'
 		#avilability = response.xpath('//*[@id="maincontent"]/div/div/div/div/div[2]/div[2]/div/div/div/div[2]/div/div[1]/div[2]/div[3]/div[1]/span/text()').extract_first()
-		#condition ='New'
-
-
 		yield {
 				'title' : title,
 				'price' : float(price),
