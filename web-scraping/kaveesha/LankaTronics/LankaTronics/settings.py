@@ -22,8 +22,8 @@ NEWSPIDER_MODULE = 'LankaTronics.spiders'
 ROBOTSTXT_OBEY = False
 
 
-#FEED_FORMAT = "json"
-#FEED_URI = "../../../../data/lankatronics.json"
+FEED_FORMAT = "json"
+FEED_URI = "../../../../data/lankatronics.json"
 
 #Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32

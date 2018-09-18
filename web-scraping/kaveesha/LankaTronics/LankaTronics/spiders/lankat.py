@@ -61,7 +61,7 @@ class LankatSpider(scrapy.Spider):
         else:
             price = price
         description = re.sub('\s+', ' ', unicodedata.normalize("NFKD", ''.join(response.xpath('//div[@class="product attribute description"]/div//text()').extract()))).strip()
-        img = Nonels
+        img ='None'
         url = response.url
         location = 'online'
         condition = 'New'
