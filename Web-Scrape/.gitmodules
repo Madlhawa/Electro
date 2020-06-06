@@ -1,0 +1,3 @@
+[submodule "ikmanscraper"]
+	path = ikmanscraper
+	url = git@github.com:Madlhawa/ikmanscraper.git
