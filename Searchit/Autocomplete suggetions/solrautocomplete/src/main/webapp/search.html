@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Solr auto complete</title>
+<link
+	href="http://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css"
+	rel="stylesheet"></link>
+<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+<script>
+	$(function() {
+		var URL_PREFIX = "http://104.154.242.107/solr/electro102/suggest?suggest.dictionary=mySuggester&suggest.q=name:";
+		var URL_SUFFIX = "&wt=json";
+		$("#searchBox").autocomplete({
+			source : function(request, response) {
+				var URL = URL_PREFIX + $("#searchBox").val() + URL_SUFFIX;
+				$.ajax({
+					url : URL,
+					success : function(data) {
+						var docs = JSON.stringify(data.response.docs);
+						var jsonData = JSON.parse(docs);
+						response($.map(jsonData, function(value, key) {
+							return {
+								label : value.name
+							}
+						}));
+					},
+					dataType : 'jsonp',
+					jsonp : 'json.wrf'
+				});
+			},
+			minLength : 1
+		})
+	});
+	$(function() {
+		var URL_PREFIX = "http://104.154.242.107/solr/electro102/suggest?suggest.dictionary=mySuggester&suggest.q=name:";
+		var URL_MIDDLE = "OR name_ngram:";
+		var URL_SUFFIX = "&wt=json";
+		$("#ngramBox").autocomplete(
+				{
+					source : function(request, response) {
+						var searchString = "\"" + $("#ngramBox").val() + "\"";
+						var URL = URL_PREFIX + searchString + URL_MIDDLE
+								+ searchString + URL_SUFFIX;
+						$.ajax({
+							url : URL,
+							success : function(data) {
+								var docs = JSON.stringify(data.response.docs);
+								var jsonData = JSON.parse(docs);
+								response($.map(jsonData, function(value, key) {
+									return {
+										label : value.name
+									}
+								}));
+							},
+							dataType : 'jsonp',
+							jsonp : 'json.wrf'
+						});
+					},
+					minLength : 1
+				})
+	});
+</script>
+</head>
+<body>
+	<div>
+		<p>Type 'A' or 'The'</p>
+		<label for="searchBox">Tags: </label> <input id="searchBox"></input>
+	</div>
+	<div>
+		<p>Type 'Th' or 'Bla' or 'The Black'</p>
+		<label for="ngramBox">Tags: </label> <input id="ngramBox"></input>
+	</div>
+</body>
+</html>
